@@ -1,18 +1,18 @@
 import { useQuery } from "@apollo/client";
 import ClientRow from "./ClientRow";
 import { GET_CLIENTS } from "../queries/client";
-import Spinner from './Spinner';
+import Spinner from "./Spinner";
 
 const Clients = () => {
   const { loading, error, data } = useQuery(GET_CLIENTS);
-  
-  if(loading) return <Spinner />
-  if(error) return <p>Somthing Went Wrong</p>
+
+  if (loading) return <Spinner />;
+  if (error) return <p>Somthing Went Wrong</p>;
 
   return (
     <>
-      { !loading && !error && (
-        <table className="table table-hover mt-3">
+      {!loading && !error && (
+        <table className='table table-hover mt-3'>
           <thead>
             <tr>
               <th>Name</th>
@@ -22,12 +22,12 @@ const Clients = () => {
             </tr>
           </thead>
           <tbody>
-            {data.clients.map(client => (
+            {data.clients.map((client) => (
               <ClientRow key={client.id} client={client} />
             ))}
           </tbody>
         </table>
-      ) }
+      )}
     </>
   );
 };
